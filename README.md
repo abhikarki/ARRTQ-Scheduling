@@ -1,4 +1,4 @@
-# ARRTQ - Adaptive Round Robin with Time Quantum
+# ARRTQ - Adaptive Round Robin with Triple Queue 
 
 This project implements and analyzes scheduling algorithms including:
 
