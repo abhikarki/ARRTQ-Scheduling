@@ -9,6 +9,8 @@ class Process:
     remaining_time: Optional[int] = None
     completion_time: Optional[int] = None
     start_time: Optional[int] = None
+    turnaround_time: Optional[float] = None
+    waiting_time: Optional[float] = None
 
     def __post_init__(self):
         self.remaining_time = self.burst_time
