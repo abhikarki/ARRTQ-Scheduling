@@ -1,6 +1,7 @@
 # ARRTQ - Adaptive Round Robin with Time Quantum
 
 This project implements and analyzes scheduling algorithms including:
+
 - Base Round Robin (RR) with fixed time quantum
 - Adaptive Round Robin with Time Quantum (ARRTQ)
 
@@ -22,12 +23,14 @@ ARRTQ/
 ## Setup
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/ARRTQ.git
 cd ARRTQ
 ```
 
 2. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -35,6 +38,7 @@ pip install -r requirements.txt
 ## Usage
 
 The project includes Jupyter notebooks demonstrating the algorithms:
+
 - `notebooks/demo_baseRR.ipynb`: Demonstrates base Round Robin scheduling
 - `notebooks/compare_baseRR_with_ARRTQ.ipynb`: Compares RR with ARRTQ
 
