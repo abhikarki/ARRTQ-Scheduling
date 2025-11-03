@@ -8,10 +8,10 @@ This project implements and analyzes scheduling algorithms including:
 
 ## Current Progress
 
-| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Ctx Switches | Overhead (%) |
+| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Ctx Switches | idle time |
 |------------|----------|----------|----------|-----------|---------------|---------------|---------------|
-| Round Robin | 50 proc | 102.4 | 54.1 | 36.2 | 91.7 | 142 | 6.4 |
-| ARRTQ | 50 proc | 97.3 | 52.8 | 28.9 | 93.1 | 150 | 6.9 |
+| Round Robin | 6 proc | 40.25 | 34.88 | 12.00 | 100 | 15 | __ |
+| ARRTQ | 6 proc | 31.59 | 26.21 | 18.43 | 100 | 14 | __ |
 | Modified ARRTQ | __ proc | __ | __ | __ ↓** | ___ | ___ | ____ |
 
 ## Project Structure
