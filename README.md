@@ -24,7 +24,7 @@ ARRTQ/
 │   ├── process.py     # Process class definition
 │   ├── scheduler_rr.py # Base Round Robin implementation
 │   └── scheduler_arrtq.py # ARRTQ implementation
-│   ├── scheduler_modified_ARRTQ.py     # Our proposed modified ARRTQ Algorithm
+│   ├── scheduler_modified_ARRTQ.py     # proposed modified ARRTQ Algorithm
 │   ├── process_generator.py     # generate datasets
 
 
@@ -34,14 +34,7 @@ ARRTQ/
 
 ## Setup
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/ARRTQ.git
-cd ARRTQ
-```
-
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -61,7 +54,7 @@ The project includes Jupyter notebooks demonstrating the algorithms:
 - Performance metrics calculation:
   - Average Turnaround Time
   - Average Waiting Time
+  - First Response Times & Average First Response Time
   - CPU Utilization
   - Context Switch Overhead
 - Visualization of scheduling results
-\
