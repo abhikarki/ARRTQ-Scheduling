@@ -1,9 +1,9 @@
-# ARRTQ - Adaptive Round Robin with Time Quantum
+# ARRTQ - Adaptive Round Robin with Triple Queue 
 
 This project implements and analyzes scheduling algorithms including:
 
 - Base Round Robin (RR) with fixed time quantum
-- Adaptive Round Robin with Time Quantum (ARRTQ)
+- Adaptive Round Robin Scheduling with Triple Queues (ARRTQ)
 
 ## Project Structure
 
@@ -40,7 +40,8 @@ pip install -r requirements.txt
 The project includes Jupyter notebooks demonstrating the algorithms:
 
 - `notebooks/demo_baseRR.ipynb`: Demonstrates base Round Robin scheduling
-- `notebooks/compare_baseRR_with_ARRTQ.ipynb`: Compares RR with ARRTQ
+- `notebooks/demo_baseARRTQ.ipynb`: Demonstrates base ARRTQ scheduling, also the resulting metrics show that it performs better than the base Round Robin scheduling(compare with previous notebook results)
+- `notebooks/compare_baseRR_with_ARRTQ.ipynb`: Compares RR with ARRTQ    (To be implemented)
 
 ## Features
 
@@ -51,4 +52,4 @@ The project includes Jupyter notebooks demonstrating the algorithms:
   - CPU Utilization
   - Context Switch Overhead
 - Visualization of scheduling results
-- Comparative analysis of scheduling algorithms
+\
