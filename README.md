@@ -4,7 +4,7 @@ This project implements and analyzes scheduling algorithms including:
 
 - Base Round Robin (RR) with fixed time quantum
 - Adaptive Round Robin Scheduling with Triple Queues (ARRTQ)
-- Modified ARRTQ (Our proposed algorithm)
+- Modified ARRTQ (proposed algorithm)
 
 ## Current Progress
 
