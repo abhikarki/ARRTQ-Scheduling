@@ -26,6 +26,11 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
     total_turnaround_time = 0
     total_waiting_time = 0
 
+    # to track the accumulation on Ready Queue
+    rq_length_over_time = []
+    # first response time
+    first_response_times = {}
+
     # To add the newly arriving processes to the Ready Queue as the rest of the algorithm keeps running for LBTQ and SBTQ
     def add_new_arrivals_RQ():
         nonlocal i
@@ -33,6 +38,7 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
         while i < len(processes) and processes[i].arrival_time <= current_time:
             RQ.append(processes[i])
             i += 1
+        rq_length_over_time.append((current_time, len(RQ)))
 
 
     # This method runs the individual queue, either the LBTQ or SBTQ once for the current time quantum
@@ -45,9 +51,11 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
             return
         
         p = queue.popleft()
-        # if this process running for first time, set the start_time
+        # if this process running for first time, set the start_time and first response time
         if p.start_time is None:
             p.start_time = current_time
+            first_response_times[p.pid] = p.start_time - p.arrival_time
+
 
         run_time = min(p.remaining_time, TQ)
         p.remaining_time -= run_time
@@ -101,7 +109,7 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
             run_queue(LBTQ, TQ)
             run_queue(SBTQ, TQ)
             run_queue(SBTQ, TQ)
-            
+
             # as we run the processes from LBTQ and SBTQ, the time passes and more processes can arrive in Ready Queue, so we simulate that
             add_new_arrivals_RQ()
         
@@ -144,7 +152,10 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
         "throughput": n / execution_time if execution_time > 0 else 0,
         "cpu_utilization": ((execution_time - idle_time) / execution_time * 100) if execution_time > 0 else 0,
         "context_switch_overhead": (total_context_switch_time / execution_time * 100) if execution_time > 0 else 0,
-        "completed_processes": completed_processes
+        "completed_processes": completed_processes,
+        "first_response_times": first_response_times,
+        "average_first_response_time": np.mean(list(first_response_times.values())) if first_response_times else 0,
+        "rq_length_over_time": rq_length_over_time,
     }
 
     return metrics

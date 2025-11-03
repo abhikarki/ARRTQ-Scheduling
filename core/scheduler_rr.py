@@ -25,12 +25,17 @@ def round_robin(processes: List[Process], time_quantum: int, context_switch_time
     # variable for simulating incoming processes from the sorted list
     i = 0
 
+    rq_length_over_time = []
+    first_response_times = {}
+
     while ready_queue or i < len(processes):
         # Simulate by adding processes to the ready queue by arrival time
         while(i < len(processes) and processes[i].arrival_time <= current_time):
             ready_queue.append(processes[i])
             # calculating total burst_time as we add new processes
             i += 1
+        
+        rq_length_over_time.append((current_time, len(ready_queue)))
     
         # So, if the queue is empty, for example, when we are in first iteration
         # our time starts as 0 and so nothing is added to we will change the time to the 
@@ -45,9 +50,10 @@ def round_robin(processes: List[Process], time_quantum: int, context_switch_time
         # take the process 
         p = ready_queue.popleft()
 
-        # we will set its start time if it running for the first time
+        # we will set its start time if it running for the first time and also the first_response_time
         if p.start_time is None:
             p.start_time = current_time
+            first_response_times[p.pid] = p.start_time - p.arrival_time
         
         # simulating that the process ran for either time_quantum time or its whole thing if 
         # remaining time is less than the burst time
@@ -76,6 +82,8 @@ def round_robin(processes: List[Process], time_quantum: int, context_switch_time
         while i < len(processes) and processes[i].arrival_time <= current_time:
             ready_queue.append(processes[i])
             i +=1
+
+        rq_length_over_time.append((current_time, len(ready_queue)))
 
         # add to end of queue if process didnot finish
         if(p.remaining_time > 0):
@@ -108,7 +116,13 @@ def round_robin(processes: List[Process], time_quantum: int, context_switch_time
         "throughput": n / execution_time if execution_time > 0 else 0,  # Processes per time
         "cpu_utilization": ((execution_time - idle_time) / execution_time * 100) if execution_time > 0 else 0,  
         "context_switch_overhead": (total_context_switch_time / execution_time * 100) if execution_time > 0 else 0,  # Percentage of execution time spent in context switching
-        "completed_processes": completed_processes
+        "completed_processes": completed_processes,
+        "first_response_times": first_response_times,
+        "average_first_response_time":(
+            sum(first_response_times.values()) / len(first_response_times)
+            if first_response_times else 0
+        ),
+        "rq_length_over_time": rq_length_over_time,
     }
     
     return metrics
