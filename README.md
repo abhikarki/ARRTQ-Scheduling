@@ -4,6 +4,15 @@ This project implements and analyzes scheduling algorithms including:
 
 - Base Round Robin (RR) with fixed time quantum
 - Adaptive Round Robin Scheduling with Triple Queues (ARRTQ)
+- Modified ARRTQ (Our proposed algorithm)
+
+## Current Progress
+
+| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Ctx Switches | Overhead (%) |
+|------------|----------|----------|----------|-----------|---------------|---------------|---------------|
+| Round Robin | 50 proc | 102.4 | 54.1 | 36.2 | 91.7 | 142 | 6.4 |
+| ARRTQ | 50 proc | 97.3 | 52.8 | 28.9 | 93.1 | 150 | 6.9 |
+| Modified ARRTQ | __ proc | __ | __ | __ ↓** | ___ | ___ | ____ |
 
 ## Project Structure
 
@@ -15,7 +24,10 @@ ARRTQ/
 │   ├── process.py     # Process class definition
 │   ├── scheduler_rr.py # Base Round Robin implementation
 │   └── scheduler_arrtq.py # ARRTQ implementation
-├── data/              # Data files and test cases
+│   ├── scheduler_modified_ARRTQ.py     # Our proposed modified ARRTQ Algorithm
+│   ├── process_generator.py     # generate datasets
+
+
 ├── notebooks/         # Jupyter notebooks for visualization and analysis
 └── requirements.txt   # Python dependencies
 ```
@@ -41,7 +53,7 @@ The project includes Jupyter notebooks demonstrating the algorithms:
 
 - `notebooks/demo_baseRR.ipynb`: Demonstrates base Round Robin scheduling
 - `notebooks/demo_baseARRTQ.ipynb`: Demonstrates base ARRTQ scheduling, also the resulting metrics show that it performs better than the base Round Robin scheduling(compare with previous notebook results)
-- `notebooks/compare_baseRR_with_ARRTQ.ipynb`: Compares RR with ARRTQ    (To be implemented)
+- `notebooks/compare_baseRR_ARRTQ_modifiedARRTQ.ipynb`: Compares all three algorithms(base Round Robin, ARRTQ, modified ARRTQ) 
 
 ## Features
 
