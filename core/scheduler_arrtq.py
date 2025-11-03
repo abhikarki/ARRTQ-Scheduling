@@ -100,7 +100,8 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
             TQ = (abt_lbtq + abt_sbtq) / 2
             run_queue(LBTQ, TQ)
             run_queue(SBTQ, TQ)
-
+            run_queue(SBTQ, TQ)
+            
             # as we run the processes from LBTQ and SBTQ, the time passes and more processes can arrive in Ready Queue, so we simulate that
             add_new_arrivals_RQ()
         
