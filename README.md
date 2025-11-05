@@ -6,7 +6,7 @@ This project implements and analyzes scheduling algorithms including:
 - Adaptive Round Robin Scheduling with Triple Queues (ARRTQ)
 - Balanced ARRTQ (proposed algorithm)
 
-## Current Progress  (Balanced ARRTQ shows imporovement in Avg. FRT (Average First Response Time)
+## Current Progress - ### Balanced ARRTQ shows imporovement in Avg. FRT (Average First Response Time)
 
 | Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Ctx Switches | throughput |
 |------------|----------|----------|----------|-----------|---------------|---------------|---------------|
