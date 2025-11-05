@@ -8,7 +8,7 @@ This project implements and analyzes scheduling algorithms including:
 
 ## Current Progress - Balanced ARRTQ shows imporovement in Avg. FRT (Average First Response Time)
 
-| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Ctx Switches | throughput |
+| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Context Switches | throughput |
 |------------|----------|----------|----------|-----------|---------------|---------------|---------------|
 | Round Robin | 1000 proc | 8660 | 8649 | ___ | 99.99 | 4049 | ___ |
 | ARRTQ | 1000 proc | 5626 | 5615 | 4282 | 99.98| 2124 | 0.0754 |
