@@ -4,6 +4,15 @@ This project implements and analyzes scheduling algorithms including:
 
 - Base Round Robin (RR) with fixed time quantum
 - Adaptive Round Robin Scheduling with Triple Queues (ARRTQ)
+- Modified ARRTQ (proposed algorithm)
+
+## Current Progress
+
+| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Ctx Switches | idle time |
+|------------|----------|----------|----------|-----------|---------------|---------------|---------------|
+| Round Robin | 6 proc | 40.25 | 34.88 | 12.00 | 100 | 15 | __ |
+| ARRTQ | 6 proc | 31.59 | 26.21 | 18.43 | 100 | 14 | __ |
+| Modified ARRTQ | __ proc | __ | __ | __ ↓** | ___ | ___ | ____ |
 
 ## Project Structure
 
@@ -15,21 +24,17 @@ ARRTQ/
 │   ├── process.py     # Process class definition
 │   ├── scheduler_rr.py # Base Round Robin implementation
 │   └── scheduler_arrtq.py # ARRTQ implementation
-├── data/              # Data files and test cases
+│   ├── scheduler_modified_ARRTQ.py     # proposed modified ARRTQ Algorithm
+│   ├── process_generator.py     # generate datasets
+
+
 ├── notebooks/         # Jupyter notebooks for visualization and analysis
 └── requirements.txt   # Python dependencies
 ```
 
 ## Setup
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/ARRTQ.git
-cd ARRTQ
-```
-
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -41,7 +46,7 @@ The project includes Jupyter notebooks demonstrating the algorithms:
 
 - `notebooks/demo_baseRR.ipynb`: Demonstrates base Round Robin scheduling
 - `notebooks/demo_baseARRTQ.ipynb`: Demonstrates base ARRTQ scheduling, also the resulting metrics show that it performs better than the base Round Robin scheduling(compare with previous notebook results)
-- `notebooks/compare_baseRR_with_ARRTQ.ipynb`: Compares RR with ARRTQ    (To be implemented)
+- `notebooks/compare_baseRR_ARRTQ_modifiedARRTQ.ipynb`: Compares all three algorithms(base Round Robin, ARRTQ, modified ARRTQ) 
 
 ## Features
 
@@ -49,7 +54,7 @@ The project includes Jupyter notebooks demonstrating the algorithms:
 - Performance metrics calculation:
   - Average Turnaround Time
   - Average Waiting Time
+  - First Response Times & Average First Response Time
   - CPU Utilization
   - Context Switch Overhead
 - Visualization of scheduling results
-\
