@@ -10,8 +10,8 @@ This project implements and analyzes scheduling algorithms including:
 
 | Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Context Switches | throughput |
 |------------|----------|----------|----------|-----------|---------------|---------------|---------------|
-| ARRTQ | 10000 processes | 58942 | 58931 | 38715 | ___| ____ | ____ |
-| Balanced ARRTQ | 1000 processes | 58296 | 58285 | 32871 (15% reduction) | ___ | ____ | ____ |
+| ARRTQ | 10000 processes | 58942 | 58931 | 38715 |99.99| 21342 |0.07576  |
+| Balanced ARRTQ | 1000 processes | 58296 | 58285 | 32871 (15% reduction) |99.99| 20496 | 0.076253|
 
 
 ## Proposed Balanced ARRTQ Approach
@@ -34,6 +34,24 @@ $$\gamma = \frac{L_{RQ}}{L_{RQ} + c\ * L_{A} + 1}$$
 $m = \max\{1,\ \lfloor \gamma \cdot L_{RQ} \rfloor\}$
 </h2>
 where 'm' is the number of processes to be added from RQ to active queues. 
+
+## Metrics Comparision for different datasets
+
+### 1. Balanced ARRTQ shows improvement in Average First Response Time
+<img width="1717" height="525" alt="Screenshot (85)" src="https://github.com/user-attachments/assets/8ce03ed4-ead2-43ec-931c-15793eb1ac05" />
+
+### 2. Balanced ARRTQ shows similar performance in Average TurnAround Time with ARRTQ (meaning no tradeoff of turnaround time for better first response time)
+<img width="1742" height="550" alt="Screenshot (86)" src="https://github.com/user-attachments/assets/765f7433-bc5b-4e7a-af1d-6078ac8dd69d" />
+
+### 3. No tradeoff in waiting times
+<img width="1729" height="546" alt="Screenshot (87)" src="https://github.com/user-attachments/assets/7a4d454c-6cdb-47ee-8acd-0bfedbf3dc7c" />
+
+### 4. Similar or Better performance in Number of Context switches
+<img width="1737" height="546" alt="Screenshot (89)" src="https://github.com/user-attachments/assets/4cacd3f4-2c3e-480e-9210-f26382ba386e" />
+
+
+
+
 
 
 ## Project Structure
