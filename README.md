@@ -13,6 +13,12 @@ This project implements and analyzes scheduling algorithms including:
 | ARRTQ | 10000 processes | 58942 | 58931 | 38715 |99.99| 21342 |0.07576  |
 | Balanced ARRTQ | 1000 processes | 58296 | 58285 | 32871 (15% reduction) |99.99| 20496 | 0.076253|
 
+| ARRTQ | 5000 processes | 28493 | 28482 | 21785 |99.99| 10748 | 0.075571|
+| Balanced ARRTQ | 5000 processes | 28992 | 28981 | 16270 (25% reduction) |99.99| 10264 | 0.076128|
+
+
+
+
 
 ## Proposed Balanced ARRTQ Approach
 The Balanced ARRTQ (proposed algorithm) improves the original ARRTQ by dynamically deciding how many new processes from the Ready Queue(RQ) should be admitted into the active queues(SBTQ-Small Burst Time Queue and LBTQ-Large Burst Time Queue). Instead of waiting until both SBTQ and LBTQ are empty (original ARRTQ approach), the scheduler continuously adds some processes from RQ into active queues based on the following admission factor: 
