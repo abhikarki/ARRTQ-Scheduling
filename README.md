@@ -10,9 +10,8 @@ This project implements and analyzes scheduling algorithms including:
 
 | Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Context Switches | throughput |
 |------------|----------|----------|----------|-----------|---------------|---------------|---------------|
-| Round Robin | 1000 proc | 8660 | 8649 | ___ | 99.99 | 4049 | ___ |
-| ARRTQ | 1000 proc | 5626 | 5615 | 4282 | 99.98| 2124 | 0.0754 |
-| Balanced ARRTQ | 1000 proc | 5831 | 5820 | 3295 | 99.98 | 2078 | 0.0756 |
+| ARRTQ | 10000 processes | 58942 | 58931 | 38715 | ___| ____ | ____ |
+| Balanced ARRTQ | 1000 processes | 58296 | 58285 | 32871 (15% reduction) | ___ | ____ | ____ |
 
 
 ## Proposed Balanced ARRTQ Approach
