@@ -25,7 +25,7 @@ The Balanced ARRTQ (proposed algorithm) improves the original ARRTQ by dynamical
 <h2 align = "center">
 $$\gamma = \frac{L_{RQ}}{L_{RQ} + c\ * L_{A} + 1}$$  
 </h2>
-**Where**
+Where
 
 - $L_{RQ}$ — Number of processes currently waiting in the Ready Queue.
 - $L_{A}$ = |SBTQ| + |LBTQ| — Total number of active processes.
