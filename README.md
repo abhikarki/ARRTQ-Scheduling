@@ -1,25 +1,15 @@
 # Background: CPU Scheduling
 
-CPU scheduling determines which process gets to run on the CPU and when, with the goal of optimizing overall system performance.
-
-### Key Objectives
-A good scheduler aims to: <br>
-Minimize
-* Turnaround Time (TAT) – total time from process submission to completion
-* Waiting Time (WT) – time a process spends waiting in the ready queue
-* Response Time – time until the process first gets the CPU
-
-Maximize
-* CPU Utilization – percentage of time CPU is actively executing
-* Throughput – number of processes completed per unit time
+CPU scheduling is the mechanism an operating system uses to determine which process gets to use the CPU at any given moment. Since a CPU can execute only one process at a time, while many processes may be waiting to run, an efficient scheduling strategy is essential. A good scheduler aims to minimize Turnaround Time (TAT) – total time from process submission to completion, Waiting Time (WT) – time a process spends waiting in the ready queue and Response Time – time until the process first gets the CPU. <br>
+A good scheduler also aims to maximize CPU Utilization – percentage of time CPU is actively executing and Throughput – number of processes completed per unit time.
 
 ### Classical Round Robin (RR)
 Round Robin is one of the most widely used preemptive scheduling algorithms.
 In Round Robin, Each process is assigned a fixed Time Quantum (TQ) and each process executes for at most one TQ. If unfinished, it moves to the back of the ready queue. This ensures fairness since every process receives equal CPU slices.
 
-### Limitations of RR
+### Limitations of Classical Round Robin
 Despite its simplicity, fixed-quantum RR suffers from:
-*High context-switch overhead when TQ is too small→ CPU spends more time switching than executing
+* High context-switch overhead when TQ is too small→ CPU spends more time switching than executing
 
 * Poor responsiveness when TQ is too large
 → Processes wait longer before getting CPU time
@@ -30,27 +20,13 @@ Despite its simplicity, fixed-quantum RR suffers from:
 
 # ARRTQ - Adaptive Round Robin with Triple Queue 
 
-This project implements and analyzes scheduling algorithms including:
+The ARRTQ algorithm is an approach presented in the original research paper <a href="https://ieeexplore.ieee.org/document/10594037"> Maximizing CPU Performance: Advancing Efficiency and Fairness through ARRTQ. </a> The core idea is to dynamically adjust the time quantum by dividing incoming processes into three separate ready queues, typically categorized by their burst time characteristics. The scheduler cycles through these queues in a structured order, allocating CPU time adaptively rather than using a single fixed quantum. This multi-queue adaptive design helps the algorithm reduce Turnaround Time (TAT) and Waiting Time (WT) compared to classical Round Robin, while still maintaining fairness across processes. 
 
-- Base Round Robin (RR) with fixed time quantum
-- Adaptive Round Robin Scheduling with Triple Queues (ARRTQ)
-- Balanced ARRTQ (proposed algorithm)
+## Area of Improvement
+While ARRTQ improves traditional Round Robin by adapting time quanta across three queues, we found that its design still leaves an important issue unresolved. As the scheduler alternates between the Long Burst Time Queue (LBTQ) and Short Burst Time Queue (SBTQ), newly arriving processes continue to accumulate in the ready queue. This causes a significant delay before these new processes receive their first CPU allocation, increasing the First Response Time, a critical performance metric for **interactive and real-time systems**.
 
-## Current Progress - Balanced ARRTQ shows improvement in Avg. FRT (Average First Response Time)
-
-| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Context Switches | throughput |
-|------------|----------|----------|----------|-----------|---------------|---------------|---------------|
-| ARRTQ | 10000 processes | 58942 | 58931 | 38715 |99.99| 21342 |0.07576  |
-| Balanced ARRTQ | 10000 processes | 58296 | 58285 | 32871 (15% reduction) |99.99| 20496 | 0.076253|
-| ARRTQ | 5000 processes | 28493 | 28482 | 21785 |99.99| 10748 | 0.075571|
-| Balanced ARRTQ | 5000 processes | 28992 | 28981 | 16270 (25% reduction) |99.99| 10264 | 0.076128|
-
-
-
-
-
-## Proposed Balanced ARRTQ Approach
-The Balanced ARRTQ (proposed algorithm) improves the original ARRTQ by dynamically deciding how many new processes from the Ready Queue(RQ) should be admitted into the active queues(SBTQ-Small Burst Time Queue and LBTQ-Large Burst Time Queue). Instead of waiting until both SBTQ and LBTQ are empty (original ARRTQ approach), the scheduler continuously adds some processes from RQ into active queues based on the following admission factor: 
+# Our Approach: Balanced-ARRTQ 
+The Balanced ARRTQ (proposed algorithm) aims to improve the original ARRTQ by dynamically deciding how many new processes from the Ready Queue(RQ) should be admitted into the active queues(SBTQ-Small Burst Time Queue and LBTQ-Large Burst Time Queue). Instead of waiting until both SBTQ and LBTQ are empty (original ARRTQ approach), the scheduler continuously adds some processes from RQ into active queues based on the following admission factor: 
 
 <h2 align = "center">
 $$\gamma = \frac{L_{RQ}}{L_{RQ} + c\ * L_{A} + 1}$$  
@@ -70,7 +46,19 @@ $m = \max\{1,\ \lfloor \gamma \cdot L_{RQ} \rfloor\}$
 </h2>
 where 'm' is the number of processes to be added from RQ to active queues. 
 
-## Metrics Comparision for different datasets
+## Current Progress - Balanced ARRTQ shows improvement in Avg. FRT (Average First Response Time)
+
+| Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Context Switches | throughput |
+|------------|----------|----------|----------|-----------|---------------|---------------|---------------|
+| **ARRTQ** | 10000 processes | 58942 | 58931 | 38715 |99.99| 21342 |0.07576  |
+| **Balanced ARRTQ** | 10000 processes | 58296 | 58285 | 32871 (**15% reduction**) |99.99| 20496 | 0.076253|
+| **ARRTQ** | 5000 processes | 28493 | 28482 | 21785 |99.99| 10748 | 0.075571|
+| **Balanced ARRTQ** | 5000 processes | 28992 | 28981 | 16270 (**25% reduction**) |99.99| 10264 | 0.076128|
+<br>
+
+
+
+## Metrics Comparision for different datasets (Lower means better performance)
 
 ### 1. Balanced ARRTQ shows improvement in Average First Response Time
 <img width="1717" height="525" alt="Screenshot (85)" src="https://github.com/user-attachments/assets/8ce03ed4-ead2-43ec-931c-15793eb1ac05" />
