@@ -1,4 +1,4 @@
-## Background: CPU Scheduling
+# Background: CPU Scheduling
 
 CPU scheduling determines which process gets to run on the CPU and when, with the goal of optimizing overall system performance.
 
@@ -11,7 +11,7 @@ Minimize
 
 Maximize
 * CPU Utilization – percentage of time CPU is actively executing
-*Throughput – number of processes completed per unit time
+* Throughput – number of processes completed per unit time
 
 ### Classical Round Robin (RR)
 Round Robin is one of the most widely used preemptive scheduling algorithms.
@@ -19,13 +19,12 @@ In Round Robin, Each process is assigned a fixed Time Quantum (TQ) and each proc
 
 ### Limitations of RR
 Despite its simplicity, fixed-quantum RR suffers from:
-High context-switch overhead when TQ is too small
-→ CPU spends more time switching than executing
+*High context-switch overhead when TQ is too small→ CPU spends more time switching than executing
 
-Poor responsiveness when TQ is too large
+* Poor responsiveness when TQ is too large
 → Processes wait longer before getting CPU time
 
-No adaptation to burst-time characteristics
+* No adaptation to burst-time characteristics
 → Both short and long processes are treated the same
 
 
