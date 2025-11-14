@@ -3,8 +3,8 @@
 CPU scheduling determines which process gets to run on the CPU and when, with the goal of optimizing overall system performance.
 
 ### Key Objectives
-A good scheduler aims to:
-Minimize: 
+A good scheduler aims to: <br>
+Minimize
 * Turnaround Time (TAT) – total time from process submission to completion
 * Waiting Time (WT) – time a process spends waiting in the ready queue
 * Response Time – time until the process first gets the CPU
@@ -15,11 +15,7 @@ Maximize
 
 ### Classical Round Robin (RR)
 Round Robin is one of the most widely used preemptive scheduling algorithms.
-How RR Works:
-Each process is assigned a fixed Time Quantum (TQ).
-A process executes for at most one TQ.
-If unfinished, it moves to the back of the ready queue.
-Ensures fairness since every process receives equal CPU slices.
+In Round Robin, Each process is assigned a fixed Time Quantum (TQ) and each process executes for at most one TQ. If unfinished, it moves to the back of the ready queue. This ensures fairness since every process receives equal CPU slices.
 
 ### Limitations of RR
 Despite its simplicity, fixed-quantum RR suffers from:
