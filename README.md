@@ -46,12 +46,13 @@ $m = \max\{1,\ \lfloor \gamma \cdot L_{RQ} \rfloor\}$
 </h2>
 where 'm' is the number of processes to be added from RQ to active queues. 
 
-## Current Progress - Balanced ARRTQ shows improvement in Avg. FRT (Average First Response Time)
+## Current Progress - Balanced ARRTQ shows improvement in Avg. FRT (Average First Response Time) without affecting other metrics
 
 | Algorithm | Dataset | Avg. TAT | Avg. WT | Avg. FRT | CPU Util (%) | Context Switches | throughput |
 |------------|----------|----------|----------|-----------|---------------|---------------|---------------|
 | **ARRTQ** | 10000 processes | 58942 | 58931 | 38715 |99.99| 21342 |0.07576  |
 | **Balanced ARRTQ** | 10000 processes | 58296 | 58285 | 32871 (**15% reduction**) |99.99| 20496 | 0.076253|
+|  |  |  |  |    | <br><br>
 | **ARRTQ** | 5000 processes | 28493 | 28482 | 21785 |99.99| 10748 | 0.075571|
 | **Balanced ARRTQ** | 5000 processes | 28992 | 28981 | 16270 (**25% reduction**) |99.99| 10264 | 0.076128|
 <br>
