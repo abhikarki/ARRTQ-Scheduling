@@ -159,9 +159,3 @@ def arrtq(processes: List[Process], context_switch_time: int = 1) -> Dict:
     }
 
     return metrics
-
-        
-
-
-
-

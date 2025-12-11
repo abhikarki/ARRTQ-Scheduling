@@ -8,7 +8,7 @@ def generate_processes(n: int, seed: int = 42, arrival_rate: float = 3.0, burst_
     current_arrival = 0
 
     for pid in range(1, n + 1):
-        # Inter-arrival time (can be exponential for realism)
+        # Inter-arrival time 
         inter_arrival = random.expovariate(1 / arrival_rate)
         current_arrival += int(inter_arrival)
 
