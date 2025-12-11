@@ -60,18 +60,24 @@ where 'm' is the number of processes to be added from RQ to active queues.
 
 
 ## Metrics Comparision for different datasets (Lower means better performance)
+For each dataset size, we ran 50 independent simulations by sending the same data to both the algorithms and collected relevant metrics – First Response Time (FRT), Turnaround Time (TAT), Waiting Time (WT), and context switches. Therefore, the charts for a given dataset (e.g. FRT and TAT for 5000 processes) represent metrics and average values across the trials from the simulations, and the <b> <i> observed improvements across different metrics occurred concurrently within those dataset simulations.</i> </b>
 
 ### 1. Balanced ARRTQ shows improvement in Average First Response Time
-<img width="1717" height="525" alt="Screenshot (85)" src="https://github.com/user-attachments/assets/8ce03ed4-ead2-43ec-931c-15793eb1ac05" />
+We observe that 95% confidence intervals for the First Response Time (FRT) of the Balanced ARRTQ do not overlap with those of standard ARRTQ across all the datasets. Balanced ARRTQ achieves significantly lower FRT because unlike the ARRTQ, it does not wait for the active queues to empty before admitting new processes. This prevents the new processes from waiting too long to get the CPU for the first time.
+<img width="823" height="494" alt="image" src="https://github.com/user-attachments/assets/039fa8e1-28f1-48a7-8f6b-2bb0208e5473" />
+
 
 ### 2. Balanced ARRTQ shows similar performance in Average TurnAround Time with ARRTQ (meaning no tradeoff of turnaround time for better first response time)
-<img width="1742" height="550" alt="Screenshot (86)" src="https://github.com/user-attachments/assets/765f7433-bc5b-4e7a-af1d-6078ac8dd69d" />
+The result shows that the Balanced ARRTQ maintains almost identical TAT to original ARRTQ. This means our improvement in First Response Time does not come at the cost of slower completion times. Our admission factor helps to keep this balance as we do not overwhelm the active queues by adding all the new processes from ready queue.
+<img width="864" height="518" alt="image" src="https://github.com/user-attachments/assets/cc8c3ae9-4e55-40ba-b4b1-a8572f251c78" />
 
 ### 3. No tradeoff in waiting times
-<img width="1729" height="546" alt="Screenshot (87)" src="https://github.com/user-attachments/assets/7a4d454c-6cdb-47ee-8acd-0bfedbf3dc7c" />
+The result shows that our balanced ARRTQ maintains nearly the same waiting time as the original ARRTQ. This means the improved First Response Time does not make the other processes wait significantly longer compared to original ARRTQ. 
+<img width="778" height="467" alt="image" src="https://github.com/user-attachments/assets/ea4e1348-e9b9-499f-beeb-f41bef004bd1" />
 
 ### 4. Similar or Better performance in Number of Context switches
-<img width="1737" height="546" alt="Screenshot (89)" src="https://github.com/user-attachments/assets/4cacd3f4-2c3e-480e-9210-f26382ba386e" />
+This shows that the original ARRTQ’s approach of using dynamic time quantum has not been affected while we try to improve the First Response Time. This is important as one of the major drawbacks of the basic Round Robin algorithm with fixed time quantum is that the number of context switches can wildly fluctuate, affecting the performance of the system.
+<img width="754" height="453" alt="image" src="https://github.com/user-attachments/assets/bc322f8b-47ce-4736-8fdc-078eb4cea5d5" />
 
 
 
